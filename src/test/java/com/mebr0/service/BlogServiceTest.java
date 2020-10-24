@@ -80,7 +80,7 @@ public class BlogServiceTest {
         assertNotNull(blog.getTitle());
         assertNotNull(blog.getText());
 
-        blog.setTitle(blog.getText() + "q");
+        blog.setTitle(blog.getTitle() + "q");
 
         Blog saved = service.update(id, blog);
 

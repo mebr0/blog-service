@@ -10,10 +10,6 @@ public class BlogTest {
     public void testOf() {
         var blog = Blog.of("qwe", "qwe");
 
-        blog.doIt();
-
-        System.out.println(blog);
-
         assertNotNull(blog);
         assertNull(blog.getId());
         assertEquals("qwe", blog.getTitle());
