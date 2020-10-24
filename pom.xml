@@ -77,6 +77,12 @@
             <artifactId>quarkus-jdbc-postgresql</artifactId>
         </dependency>
 
+        <!-- swagger -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-openapi</artifactId>
+        </dependency>
+
         <!-- tests -->
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -131,6 +137,7 @@
                 <version>${jacoco.version}</version>
                 <configuration>
                     <excludes>
+                        <exclude>com/mebr0/TestAPI.class</exclude>
                         <exclude>com/mebr0/resource/**/*.class</exclude>
                         <exclude>com/mebr0/exception/**/*.class</exclude>
                     </excludes>
