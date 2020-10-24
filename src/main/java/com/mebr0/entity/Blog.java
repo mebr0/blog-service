@@ -1,13 +1,13 @@
 package com.mebr0.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -25,6 +25,10 @@ public class Blog {
     @NonNull
     private String text;
 
+    @JsonManagedReference
+    @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
+
     public static Blog of(String title, String text) {
         Blog blog = new Blog();
 
@@ -32,9 +36,5 @@ public class Blog {
         blog.setText(text);
 
         return blog;
-    }
-
-    public void doIt() {
-        title = "qwe";
     }
 }
