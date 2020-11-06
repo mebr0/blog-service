@@ -11,6 +11,7 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -37,7 +38,7 @@ public class CommentResource {
     @APIResponse(responseCode = "400", description = "Blog not found", content = @Content(schema = @Schema(implementation = HttpError.class)))
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response create(@PathParam("blogId") Long blogId, Comment comment) {
+    public Response create(@PathParam("blogId") Long blogId, @Valid Comment comment) {
         return Response.status(201).entity(service.create(blogId, comment)).build();
     }
 
@@ -56,7 +57,7 @@ public class CommentResource {
     @PUT
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Comment update(@PathParam("blogId") Long blogId, @PathParam("id") Long id, Comment comment) {
+    public Comment update(@PathParam("blogId") Long blogId, @PathParam("id") Long id, @Valid Comment comment) {
         return service.update(blogId, id, comment);
     }
 
