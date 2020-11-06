@@ -3,11 +3,13 @@ package com.mebr0.entity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,15 +21,16 @@ public class Blog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NonNull
     @Schema(name = "id", description = "Unique id of blog", example = "1")
     private Long id;
 
-    @NonNull
+    @NotNull(message = "Title of blog cannot be null")
+    @Size(min = 3, max = 25, message = "Title of blog must be between 3 and 25")
     @Schema(name = "title", description = "Title of blog", example = "default title")
     private String title;
 
-    @NonNull
+    @NotNull(message = "Text of blog cannot be null")
+    @NotBlank(message = "Text of blog cannot be blank")
     @Schema(name = "text", description = "Text of blog", example = "default text")
     private String text;
 

@@ -3,10 +3,11 @@ package com.mebr0.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -16,11 +17,11 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NonNull
     @Schema(name = "id", description = "Unique id of comment", example = "1")
     private Long id;
 
-    @NonNull
+    @NotNull(message = "Text of comment cannot be null")
+    @NotBlank(message = "Text of comment cannot be blank")
     @Schema(name = "text", description = "Text of comment", example = "default text")
     private String text;
 

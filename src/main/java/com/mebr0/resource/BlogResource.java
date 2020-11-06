@@ -11,6 +11,7 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -35,7 +36,7 @@ public class BlogResource {
     @APIResponse(responseCode = "201", description = "Blog created", content = @Content(schema = @Schema(implementation = Blog.class)))
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response create(Blog createBlog) {
+    public Response create(@Valid Blog createBlog) {
         return Response.status(201).entity(service.create(createBlog)).build();
     }
 
@@ -54,7 +55,7 @@ public class BlogResource {
     @PUT
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Blog update(@PathParam("id") Long id, Blog updateBlog) {
+    public Blog update(@PathParam("id") Long id, @Valid Blog updateBlog) {
         return service.update(id, updateBlog);
     }
 
