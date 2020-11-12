@@ -2,7 +2,6 @@ package com.mebr0.service;
 
 import com.mebr0.entity.Blog;
 import com.mebr0.entity.Comment;
-import com.mebr0.exception.NotFoundException;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
@@ -11,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import javax.inject.Inject;
+import javax.ws.rs.NotFoundException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;

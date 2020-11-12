@@ -2,11 +2,11 @@ package com.mebr0.service;
 
 import com.mebr0.dao.BlogDao;
 import com.mebr0.entity.Blog;
-import com.mebr0.exception.NotFoundException;
 import lombok.SneakyThrows;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.ws.rs.NotFoundException;
 import java.util.List;
 
 @ApplicationScoped

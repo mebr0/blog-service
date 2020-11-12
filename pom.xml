@@ -53,6 +53,13 @@
             <artifactId>quarkus-resteasy-jackson</artifactId>
         </dependency>
 
+        <!-- utils -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.11</version>
+        </dependency>
+
         <!-- lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -143,7 +150,7 @@
                     <excludes>
                         <exclude>com/mebr0/TestAPI.class</exclude>
                         <exclude>com/mebr0/resource/**/*.class</exclude>
-                        <exclude>com/mebr0/exception/**/*.class</exclude>
+                        <exclude>com/mebr0/filter/*.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>
