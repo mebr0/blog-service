@@ -1,5 +1,6 @@
 package com.mebr0.handler;
 
+import com.mebr0.entity.Blog;
 import com.mebr0.resource.BlogResource;
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
@@ -10,14 +11,16 @@ import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
 @TestHTTPEndpoint(BlogResource.class)
-public class NotFoundExceptionMapperTest {
+public class ConstraintViolationExceptionMapperTest {
 
     @Test
     public void testToResponse() {
         given().when().
-                get("-1").
+                body(Blog.of("", "")).
+                header("Content-Type", "application/json").
+                post().
                 then().
-                statusCode(404).
-                body("message", is("Blog with id -1 not found"));
+                statusCode(400).
+                body("message", is("Text of blog cannot be blank"));
     }
 }

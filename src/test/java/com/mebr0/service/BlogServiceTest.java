@@ -1,7 +1,6 @@
 package com.mebr0.service;
 
 import com.mebr0.entity.Blog;
-import com.mebr0.exception.NotFoundException;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -9,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import javax.inject.Inject;
+import javax.ws.rs.NotFoundException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +20,7 @@ public class BlogServiceTest {
     BlogService service;
 
     private static Long id;
-    private static Long notFoundId = -1L;
+    private static final Long notFoundId = -1L;
 
     @Order(1)
     @Test
