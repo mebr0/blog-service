@@ -11,10 +11,10 @@ import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
 @TestHTTPEndpoint(BlogResource.class)
-public class ConstraintViolationExceptionMapperTest {
+class ConstraintViolationExceptionMapperTest {
 
     @Test
-    public void testToResponse() {
+    void testToResponse() {
         given().when().
                 body(Blog.of("", "")).
                 header("Content-Type", "application/json").

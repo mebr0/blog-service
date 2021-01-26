@@ -28,14 +28,14 @@ public class CommentService implements ICommentService {
             return dao.findAllByBlogId(blogId);
         }
         else {
-            throw new NotFoundException("Blog with id " + blogId + " not found");
+            throw blogNotFoundException(blogId);
         }
     }
 
     @Override
     public Comment create(Long blogId, Comment createComment) {
         Blog blog = blogDao.findById(blogId).
-                orElseThrow(() -> new NotFoundException("Blog with id " + blogId + " not found"));
+                orElseThrow(() -> blogNotFoundException(blogId));
 
         createComment.setBlog(blog);
 
@@ -46,10 +46,10 @@ public class CommentService implements ICommentService {
     public Comment get(Long blogId, Long id) {
         if (blogDao.existsById(blogId)) {
             return dao.findByIdAndBlogId(id, blogId).
-                    orElseThrow(() -> new NotFoundException("Comment with id " + id + " not found"));
+                    orElseThrow(() -> commentNotFoundException(id));
         }
         else {
-            throw new NotFoundException("Blog with id " + blogId + " not found");
+            throw blogNotFoundException(blogId);
         }
     }
 
@@ -69,11 +69,19 @@ public class CommentService implements ICommentService {
                 dao.deleteById(id);
             }
             else {
-                throw new NotFoundException("Comment with id " + id + " not found");
+                throw commentNotFoundException(id);
             }
         }
         else {
-            throw new NotFoundException("Blog with id " + blogId + " not found");
+            throw blogNotFoundException(blogId);
         }
+    }
+
+    private NotFoundException blogNotFoundException(Long blogId) {
+        return new NotFoundException("Blog with id " + blogId + " not found");
+    }
+
+    private NotFoundException commentNotFoundException(Long id) {
+        return new NotFoundException("Comment with id " + id + " not found");
     }
 }

@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
 @TestMethodOrder(OrderAnnotation.class)
-public class BlogServiceTest {
+class BlogServiceTest {
 
     @Inject
     IBlogService service;
@@ -24,7 +24,7 @@ public class BlogServiceTest {
 
     @Order(1)
     @Test
-    public void testList() {
+    void testList() {
         var blogs = service.list();
 
         assertNotNull(blogs);
@@ -40,7 +40,7 @@ public class BlogServiceTest {
 
     @Order(2)
     @Test
-    public void testCreate() {
+    void testCreate() {
         var blog = Blog.of("qwe", "qwe");
 
         service.create(blog);
@@ -55,7 +55,7 @@ public class BlogServiceTest {
 
     @Order(3)
     @Test
-    public void testGet() {
+    void testGet() {
         Blog blog = service.get(id);
 
         assertNotNull(blog);
@@ -66,13 +66,13 @@ public class BlogServiceTest {
 
     @Order(3)
     @Test
-    public void testGet_notFound() {
+    void testGet_notFound() {
         assertThrows(NotFoundException.class, () -> service.get(notFoundId));
     }
 
     @Order(4)
     @Test
-    public void testUpdate() {
+    void testUpdate() {
         Blog blog = service.get(id);
 
         assertNotNull(blog);
@@ -92,13 +92,13 @@ public class BlogServiceTest {
 
     @Order(5)
     @Test
-    public void testDelete() {
+    void testDelete() {
         assertDoesNotThrow(() -> service.delete(id));
     }
 
     @Order(5)
     @Test
-    public void testDelete_notFound() {
+    void testDelete_notFound() {
         assertThrows(NotFoundException.class, () -> service.delete(notFoundId));
     }
 }
