@@ -20,10 +20,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CommentServiceTest {
 
     @Inject
-    CommentService service;
+    ICommentService service;
 
     @Inject
-    BlogService blogService;
+    IBlogService blogService;
 
     private static Long id;
     private static Long blogId = null;

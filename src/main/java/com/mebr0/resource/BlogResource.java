@@ -2,7 +2,7 @@ package com.mebr0.resource;
 
 import com.mebr0.dto.HttpError;
 import com.mebr0.entity.Blog;
-import com.mebr0.service.BlogService;
+import com.mebr0.service.IBlogService;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
@@ -23,7 +23,7 @@ import java.util.List;
 public class BlogResource {
 
     @Inject
-    BlogService service;
+    IBlogService service;
 
     @Operation(summary = "List blogs", description = "List all blogs")
     @APIResponse(responseCode = "200", description = "Blogs listed", content = @Content(schema = @Schema(implementation = Blog.class, type = SchemaType.ARRAY)))

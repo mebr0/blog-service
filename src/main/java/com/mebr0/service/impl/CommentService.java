@@ -1,10 +1,10 @@
-package com.mebr0.service;
+package com.mebr0.service.impl;
 
 import com.mebr0.dao.BlogDao;
 import com.mebr0.dao.CommentDao;
 import com.mebr0.entity.Blog;
 import com.mebr0.entity.Comment;
-import lombok.SneakyThrows;
+import com.mebr0.service.ICommentService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -12,15 +12,17 @@ import javax.ws.rs.NotFoundException;
 import java.util.List;
 
 @ApplicationScoped
-public class CommentService {
+public class CommentService implements ICommentService {
 
+    @SuppressWarnings("CdiInjectionPointsInspection")
     @Inject
     CommentDao dao;
 
+    @SuppressWarnings("CdiInjectionPointsInspection")
     @Inject
     BlogDao blogDao;
 
-    @SneakyThrows({NotFoundException.class})
+    @Override
     public List<Comment> list(Long blogId) {
         if (blogDao.existsById(blogId)) {
             return dao.findAllByBlogId(blogId);
@@ -30,7 +32,7 @@ public class CommentService {
         }
     }
 
-    @SneakyThrows({NotFoundException.class})
+    @Override
     public Comment create(Long blogId, Comment createComment) {
         Blog blog = blogDao.findById(blogId).
                 orElseThrow(() -> new NotFoundException("Blog with id " + blogId + " not found"));
@@ -40,7 +42,7 @@ public class CommentService {
         return dao.save(createComment);
     }
 
-    @SneakyThrows({NotFoundException.class})
+    @Override
     public Comment get(Long blogId, Long id) {
         if (blogDao.existsById(blogId)) {
             return dao.findByIdAndBlogId(id, blogId).
@@ -51,6 +53,7 @@ public class CommentService {
         }
     }
 
+    @Override
     public Comment update(Long blogId, Long id, Comment updateComment) {
         Comment instance = get(blogId, id);
 
@@ -59,7 +62,7 @@ public class CommentService {
         return dao.save(instance);
     }
 
-    @SneakyThrows({NotFoundException.class})
+    @Override
     public void delete(Long blogId, Long id) {
         if (blogDao.existsById(blogId)) {
             if (dao.existsById(id)) {

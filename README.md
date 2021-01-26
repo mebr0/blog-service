@@ -1,3 +1,3 @@
-# Quarkus Test
+# Blog
 
-This project is example of what can be written on quarkus
+Blog project written on quarkus framework

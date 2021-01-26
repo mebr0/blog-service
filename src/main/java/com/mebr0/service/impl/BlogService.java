@@ -1,8 +1,8 @@
-package com.mebr0.service;
+package com.mebr0.service.impl;
 
 import com.mebr0.dao.BlogDao;
 import com.mebr0.entity.Blog;
-import lombok.SneakyThrows;
+import com.mebr0.service.IBlogService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -10,25 +10,29 @@ import javax.ws.rs.NotFoundException;
 import java.util.List;
 
 @ApplicationScoped
-public class BlogService {
+public class BlogService implements IBlogService {
 
+    @SuppressWarnings("CdiInjectionPointsInspection")
     @Inject
     BlogDao dao;
 
+    @Override
     public List<Blog> list() {
         return dao.findAll();
     }
 
+    @Override
     public Blog create(Blog createBlog) {
         return dao.save(createBlog);
     }
 
-    @SneakyThrows({NotFoundException.class})
+    @Override
     public Blog get(Long id) {
         return dao.findById(id).
                 orElseThrow(() -> new NotFoundException("Blog with id " + id + " not found"));
     }
 
+    @Override
     public Blog update(Long id, Blog updateBlog) {
         Blog instance = get(id);
 
@@ -38,7 +42,7 @@ public class BlogService {
         return dao.save(instance);
     }
 
-    @SneakyThrows({NotFoundException.class})
+    @Override
     public void delete(Long id) {
         if (dao.existsById(id)) {
             dao.deleteById(id);
