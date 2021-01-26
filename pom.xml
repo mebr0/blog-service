@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mebr0</groupId>
-    <artifactId>blog</artifactId>
+    <artifactId>blog-core</artifactId>
     <version>1.0.0</version>
 
     <properties>
