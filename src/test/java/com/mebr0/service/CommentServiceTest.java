@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
 @TestMethodOrder(OrderAnnotation.class)
-public class CommentServiceTest {
+class CommentServiceTest {
 
     @Inject
     ICommentService service;
@@ -29,7 +29,7 @@ public class CommentServiceTest {
     private static Long blogId = null;
 
     @BeforeEach
-    public void checkOrCreateBlog() {
+    void checkOrCreateBlog() {
         if (blogId == null) {
             List<Blog> blogs = blogService.list();
 
@@ -44,7 +44,7 @@ public class CommentServiceTest {
 
     @Order(1)
     @Test
-    public void testList() {
+    void testList() {
         var comments = service.list(blogId);
 
         assertNotNull(comments);
@@ -60,13 +60,13 @@ public class CommentServiceTest {
 
     @Order(1)
     @Test
-    public void testList_notFound() {
+    void testList_notFound() {
         assertThrows(NotFoundException.class, () -> service.list(-1L));
     }
 
     @Order(2)
     @Test
-    public void testCreate() {
+    void testCreate() {
         var comment = service.create(blogId, Comment.of("qwe"));
 
         assertNotNull(comment);
@@ -79,13 +79,15 @@ public class CommentServiceTest {
 
     @Order(2)
     @Test
-    public void testCreate_notFound() {
-        assertThrows(NotFoundException.class, () -> service.create(-1L, Comment.of("qwe")));
+    void testCreate_notFound() {
+        var comment = Comment.of("qwe");
+
+        assertThrows(NotFoundException.class, () -> service.create(-1L, comment));
     }
 
     @Order(3)
     @Test
-    public void testGet() {
+    void testGet() {
         var comment = service.get(blogId, id);
 
         assertNotNull(comment);
@@ -96,19 +98,19 @@ public class CommentServiceTest {
 
     @Order(3)
     @Test
-    public void testGet_notFoundBlog() {
+    void testGet_notFoundBlog() {
         assertThrows(NotFoundException.class, () -> service.get(-1L, -1L));
     }
 
     @Order(3)
     @Test
-    public void testGet_notFoundComment() {
+    void testGet_notFoundComment() {
         assertThrows(NotFoundException.class, () -> service.get(blogId, -1L));
     }
 
     @Order(4)
     @Test
-    public void testUpdate() {
+    void testUpdate() {
         Comment comment = service.get(blogId, id);
 
         assertNotNull(comment);
@@ -128,19 +130,19 @@ public class CommentServiceTest {
 
     @Order(5)
     @Test
-    public void testDelete() {
+    void testDelete() {
         assertDoesNotThrow(() -> service.delete(blogId, id));
     }
 
     @Order(5)
     @Test
-    public void testDelete_notFoundBlog() {
+    void testDelete_notFoundBlog() {
         assertThrows(NotFoundException.class, () -> service.delete(-1L, -1L));
     }
 
     @Order(5)
     @Test
-    public void testDelete_notFoundComment() {
+    void testDelete_notFoundComment() {
         assertThrows(NotFoundException.class, () -> service.delete(blogId, -1L));
     }
 }

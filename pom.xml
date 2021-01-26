@@ -21,7 +21,16 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <surefire-plugin.version>2.22.1</surefire-plugin.version>
+        <!-- jacoco reports -->
         <jacoco.version>0.8.4</jacoco.version>
+        <!-- sonar -->
+        <sonar.organization>mebr0</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.login>b0ff54fa91076e6e98db1b23260820eece17edce</sonar.login>
+        <sonar.exclusions>
+            src/main/java/com/mebr0/filter/**/*.java,
+            src/main/java/com/mebr0/resource/**/*.java,
+        </sonar.exclusions>
     </properties>
 
     <dependencyManagement>

@@ -10,10 +10,10 @@ import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
 @TestHTTPEndpoint(BlogResource.class)
-public class NotFoundExceptionMapperTest {
+class NotFoundExceptionMapperTest {
 
     @Test
-    public void testToResponse() {
+    void testToResponse() {
         given().when().
                 get("-1").
                 then().
