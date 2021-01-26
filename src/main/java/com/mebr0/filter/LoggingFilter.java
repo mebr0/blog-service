@@ -29,6 +29,10 @@ public class LoggingFilter implements ContainerRequestFilter, ContainerResponseF
 
     @Override
     public void filter(ContainerRequestContext request) {
+        // Do not log anything, if log level higher than INFO
+        if (!log.isInfoEnabled())
+            return;
+
         var method = request.getMethod();
         var path = request.getUriInfo().getPath();
         var body = getBody(request);
@@ -46,6 +50,10 @@ public class LoggingFilter implements ContainerRequestFilter, ContainerResponseF
     @Override
     public void filter(ContainerRequestContext request,
                        ContainerResponseContext response) throws IOException {
+        // Do not log anything, if log level higher than INFO
+        if (!log.isInfoEnabled())
+            return;
+
         var method = request.getMethod();
         var path = request.getUriInfo().getPath();
         var status = response.getStatus();

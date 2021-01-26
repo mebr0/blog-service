@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mebr0</groupId>
-    <artifactId>quarkus-test</artifactId>
+    <artifactId>blog</artifactId>
     <version>1.0.0</version>
 
     <properties>
@@ -37,7 +37,7 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- quarkus core -->
+        <!-- quarkus + resteasy -->
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-resteasy</artifactId>
@@ -148,7 +148,6 @@
                 <version>${jacoco.version}</version>
                 <configuration>
                     <excludes>
-                        <exclude>com/mebr0/TestAPI.class</exclude>
                         <exclude>com/mebr0/resource/**/*.class</exclude>
                         <exclude>com/mebr0/filter/*.class</exclude>
                     </excludes>

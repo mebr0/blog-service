@@ -1,22 +1,16 @@
 package com.mebr0.dto;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
-@Data
-@NoArgsConstructor
-@RequiredArgsConstructor
+@Getter
+@RequiredArgsConstructor(staticName = "of")
 @Schema(name = "HttpError", description = "Http error with message")
 public class HttpError {
 
     @NonNull
-    @Schema(name = "message", description = "Message of error", example = "http error message")
-    private String message;
-
-    public static HttpError of(String message) {
-        return new HttpError(message);
-    }
+    @Schema(name = "message", description = "Message of error", required = true, example = "error message")
+    private final String message;
 }

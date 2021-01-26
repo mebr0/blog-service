@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BlogServiceTest {
 
     @Inject
-    BlogService service;
+    IBlogService service;
 
     private static Long id;
     private static final Long notFoundId = -1L;

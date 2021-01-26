@@ -2,7 +2,7 @@ package com.mebr0.resource;
 
 import com.mebr0.dto.HttpError;
 import com.mebr0.entity.Comment;
-import com.mebr0.service.CommentService;
+import com.mebr0.service.ICommentService;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
@@ -23,7 +23,7 @@ import java.util.List;
 public class CommentResource {
 
     @Inject
-    CommentService service;
+    ICommentService service;
 
     @Operation(summary = "List comments", description = "List all comments attached to blog with id")
     @APIResponse(responseCode = "200", description = "Comments listed", content = @Content(schema = @Schema(implementation = Comment.class, type = SchemaType.ARRAY)))
