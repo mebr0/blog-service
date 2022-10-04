@@ -37,7 +37,7 @@ class CommentServiceTest {
                 blogId = blogs.get(0).getId();
             }
             else {
-                blogId = blogService.create(Blog.of("qwe", "qwe")).getId();
+                blogId = blogService.create(Blog.of("test", "create")).getId();
             }
         }
     }
