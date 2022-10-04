@@ -14,8 +14,8 @@ import javax.ws.rs.core.Application;
                 description = "API of blog service",
                 version = "1.0.0",
                 contact = @Contact(
-                        name = "Azamat Yergali",
-                        email = "aza17e@gmail.com"
+                        name = "Blya Krasavchik",
+                        email = "codefazzer@gmail.com"
                 )
         )
 )
