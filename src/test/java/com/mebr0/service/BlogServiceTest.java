@@ -41,7 +41,7 @@ class BlogServiceTest {
     @Order(2)
     @Test
     void testCreate() {
-        var blog = Blog.of("qwe", "qwe");
+        var blog = Blog.of("test", "create");
 
         service.create(blog);
 
