@@ -42,7 +42,7 @@ public class BlogResource {
 
     @Operation(summary = "Get blog", description = "Get blog by id")
     @APIResponse(responseCode = "200", description = "Blog retrieved")
-    @APIResponse(responseCode = "400", description = "Blog not found", content = @Content(schema = @Schema(implementation = HttpError.class)))
+    @APIResponse(responseCode = "404", description = "Blog not found", content = @Content(schema = @Schema(implementation = HttpError.class)))
     @GET
     @Path("{id}")
     public Blog get(@PathParam("id") Long id) {
