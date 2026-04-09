@@ -1,3 +1,3 @@
 # Blog
 
-Blog project written on quarkus framework
+Blog project written on quarkus framework 1
